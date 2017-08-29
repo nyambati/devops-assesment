@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
     web.vm.box = "ubuntu/trusty64"
     web.vm.hostname = 'web'
     web.vm.network :private_network, ip: "192.168.56.102"
-    # web.vm.network :forwarded_port, guest: 22, host: 10122, id: "ssh"
+    web.vm.network :forwarded_port, guest: 3306, host: 3306
     web.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 512]
@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
     db.vm.hostname = 'db1'
 
     db.vm.network :private_network, ip: "192.168.56.103"
-    # db.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
+    # db.vm.network :forwarded_port, guest: 3306, host: 3306
 
     db.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]

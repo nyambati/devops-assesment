@@ -1,0 +1,16 @@
+mysql_root_password_update: yes
+mysql_databases:
+    - name: wordpress
+      collation: utf8_general_ci
+      encoding: utf8
+      replicate: 2
+
+mysql_users:
+  - name: wordpress
+    host: 1192.168.56.102
+    password: wp_db_password"
+
+mysql_replication_user:
+    name: wordpress
+    host: 192.168.56.102
+    password: wp_db_password

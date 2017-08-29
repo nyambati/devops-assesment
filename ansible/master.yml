@@ -12,6 +12,3 @@
   roles:
     - role: geerlingguy.mysql
       become: yes
-    - server
-    - php
-    - wordpress

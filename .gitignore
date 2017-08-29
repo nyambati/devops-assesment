@@ -3,4 +3,7 @@
 *.tfvars
 .terraform
 .vagrant
-vars/
+ansible/inventory/vars/*.yml
+vars/slaves.yml
+vars/web.yml
+.retry

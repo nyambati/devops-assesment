@@ -1,7 +1,10 @@
-[web]
+[wordpress]
 192.168.56.102
 
 [master]
+192.168.56.102
+
+[slaves]
 192.168.56.103
 
 [loadbalancer]
