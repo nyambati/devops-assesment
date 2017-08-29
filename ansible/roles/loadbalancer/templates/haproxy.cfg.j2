@@ -4,6 +4,10 @@ global
 	chroot /var/lib/haproxy
 	stats socket /run/haproxy/admin.sock mode 660 level admin
 	stats timeout 30s
+	maxconn         {{ max_connection }}
+	nbproc          2
+	cpu-map         1 0
+	cpu-map         2 1
 	user haproxy
 	group haproxy
 	daemon
@@ -20,10 +24,10 @@ global
 
 defaults
 	log	global
-	mode	http
+	mode	tcp
 	option  forwardfor
 	option http-server-close
-	option	httplog
+	option	tcplog
 	option	dontlognull
         timeout connect 5000
         timeout client  50000
@@ -37,12 +41,15 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 frontend http-frontend
 	bind *:80
+	maxconn         {{ max_connection }}
 	reqadd X-Forwarded-Proto:\ http
 	stats uri /haproxy?stats
-    default_backend webservers
+	default_backend webservers
 backend webservers
-	balance   {{ load_algorithm }}
-    {% for server in proxy_servers %}
-    server server-{{ loop.index }} {{ server}}:{{ proxy_port }} check
-    {% endfor %}
+	balance		{{ load_algorithm }}
+	mode tcp
+	maxconn		{{ max_connection }}
+	{% for server in proxy_servers %}
+	server server-{{ loop.index }} {{ server}}:{{ proxy_port }} check
+	{% endfor %}
 

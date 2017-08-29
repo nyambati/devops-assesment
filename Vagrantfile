@@ -4,9 +4,6 @@ Vagrant.configure("2") do |config|
     lb.vm.box = "ubuntu/trusty64"
     lb.vm.hostname = 'lb'
     lb.vm.network :private_network, ip: "192.168.56.101"
-    # lb.vm.network :forwarded_port, guest: 22, host: 10122, id: "ssh"
-
-
     lb.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 512]
@@ -17,7 +14,16 @@ Vagrant.configure("2") do |config|
     web.vm.box = "ubuntu/trusty64"
     web.vm.hostname = 'web'
     web.vm.network :private_network, ip: "192.168.56.102"
-    web.vm.network :forwarded_port, guest: 3306, host: 3306
+    web.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 512]
+    end
+  end
+
+  config.vm.define "web1" do |web|
+    web.vm.box = "ubuntu/trusty64"
+    web.vm.hostname = 'web1'
+    web.vm.network :private_network, ip: "192.168.56.103"
     web.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 512]
@@ -26,11 +32,30 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "db" do |db|
     db.vm.box = "ubuntu/trusty64"
+    db.vm.hostname = 'db'
+
+    db.vm.network :private_network, ip: "192.168.56.104"
+
+    db.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 512]
+    end
+  end
+
+  config.vm.define "db1" do |db|
+    db.vm.box = "ubuntu/trusty64"
     db.vm.hostname = 'db1'
+    db.vm.network :private_network, ip: "192.168.56.105"
+    db.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 512]
+    end
+  end
 
-    db.vm.network :private_network, ip: "192.168.56.103"
-    # db.vm.network :forwarded_port, guest: 3306, host: 3306
-
+  config.vm.define "db2" do |db|
+    db.vm.box = "ubuntu/trusty64"
+    db.vm.hostname = 'db2'
+    db.vm.network :private_network, ip: "192.168.56.106"
     db.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 512]

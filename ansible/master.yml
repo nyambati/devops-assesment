@@ -5,6 +5,7 @@
   tags:
     - database
   tasks:
+    - include_vars: "{{ inventory_dir }}/vars/all.yml"
     - include_vars: "{{ inventory_dir }}/vars/master.yml"
 
 - name: Load database login credentials for the deployment

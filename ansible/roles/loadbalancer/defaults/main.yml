@@ -3,4 +3,6 @@
 ha_repository: ppa:vbernat/haproxy-1.7
 proxy_servers: []
 proxy_port: 80
-load_algorithm: roundrobin
+max_connection: 5000
+# load_algorithm: roundrobin
+load_algorithm: static-rr

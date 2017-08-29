@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+INFRASTRUCTURE_ROOT=$(dirname $DIR)
+
+FILE=$@
+
+ANSIBLE_VAULT_PASSWORD_FILE=$INFRASTRUCTURE_ROOT/.password
+
+ANSIBLE_INVENTORY_PATH=$INFRASTRUCTURE_ROOT/ansible/inventory
+
+DB_VARS_FILE="${ANSIBLE_INVENTORY_PATH}/vars/${FILE}.yml"
+
+ansible-vault encrypt \
+  --vault-password-file $ANSIBLE_VAULT_PASSWORD_FILE \
+  $DB_VARS_FILE

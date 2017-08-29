@@ -1,0 +1,7 @@
+mysql_replication_user:
+    name: master
+    host: "%"
+    password: wp_db_password
+    priv: "*.*:ALL"
+
+mysql_replication_master: '192.168.56.104'
