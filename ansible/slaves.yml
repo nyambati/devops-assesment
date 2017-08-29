@@ -1,0 +1,16 @@
+- name: Load database login credentials for the deployment
+  hosts: slaves
+  connection: local
+  gather_facts: False
+  tags:
+    - database
+  tasks:
+    - include_vars: "{{ inventory_dir }}/vars/slaves.yml"
+
+- name: Load database login credentials for the deployment
+  hosts: slaves
+  tags:
+    - database
+  roles:
+    - role: geerlingguy.mysql
+      become: yes

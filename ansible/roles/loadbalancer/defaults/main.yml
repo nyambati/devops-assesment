@@ -1,0 +1,6 @@
+---
+# defaults file for loadbalancer
+ha_repository: ppa:vbernat/haproxy-1.7
+proxy_servers: []
+proxy_port: 80
+load_algorithm: roundrobin

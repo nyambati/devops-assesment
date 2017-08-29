@@ -1,0 +1,17 @@
+- name: Load database login credentials for the deployment
+  hosts: master
+  connection: local
+  gather_facts: False
+  tags:
+    - database
+  tasks:
+    - include_vars: "{{ inventory_dir }}/vars/master.yml"
+
+- name: Load database login credentials for the deployment
+  hosts: master
+  roles:
+    - role: geerlingguy.mysql
+      become: yes
+    - server
+    - php
+    - wordpress

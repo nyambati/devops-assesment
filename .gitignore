@@ -2,3 +2,5 @@
 *.tfstate
 *.tfvars
 .terraform
+.vagrant
+vars/

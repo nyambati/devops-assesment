@@ -1,0 +1,13 @@
+- name: Load credentials
+  hosts: loadbalancer
+  connection: local
+  gather_facts: False
+  tasks:
+    - include_vars: "{{ inventory_dir }}/vars/lb.yml"
+
+- name: Load database login credentials for the deployment
+  hosts: loadbalancer
+  user: vagrant
+  roles:
+    - role: loadbalancer
+      become: yes

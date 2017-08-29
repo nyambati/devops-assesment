@@ -1,0 +1,15 @@
+---
+# tasks file for loadbalancer
+- name: Add HA PROXY repository
+  apt_repository:
+    repo: "{{ ha_repository }}"
+- name: install HA PROXY
+  apt: name=haproxy state=present
+
+- name: Setup Proxy configurations
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - haproxy reload
+# /etc/haproxy/haproxy.cfg
