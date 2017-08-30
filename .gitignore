@@ -5,3 +5,4 @@
 .vagrant
 .retry
 .password
+terraform/hosts.ini
