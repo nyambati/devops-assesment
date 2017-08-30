@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+INFRASTRUCTURE_ROOT=$(dirname $DIR)
+
+
+# Setup Ansible paths
+ANSIBLE_GALAXY_REQUIREMENTS=$INFRASTRUCTURE_ROOT/ansible/requirements.yml
+ANSIBLE_ROLES_PATH=$INFRASTRUCTURE_ROOT/ansible/roles
+
+ansible-galaxy install \
+   -r $ANSIBLE_GALAXY_REQUIREMENTS \
+   -p $ANSIBLE_ROLES_PATH $@

@@ -6,3 +6,5 @@
 .retry
 .password
 terraform/hosts.ini
+ansible/roles/geerlingguy.firewall
+ansible/roles/geerlingguy.mysql

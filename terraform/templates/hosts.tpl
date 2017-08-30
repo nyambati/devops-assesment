@@ -9,5 +9,5 @@ ${web2}   ansible_ssh_user=ubuntu
 ${master_db_ip}  ansible_ssh_user=ubuntu
 
 [slaves]
-${slave1}  ansible_ssh_user=vagrant
+${slave1}  ansible_ssh_user=ubuntu
 ${slave2}  ansible_ssh_user=ubuntu

@@ -12,4 +12,3 @@ mysql_users:
     priv: "*.*:ALL"
 
 mysql_server_id: "2"
-mysql_replication_master: 'master_host_ip'

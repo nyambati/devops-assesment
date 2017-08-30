@@ -1,11 +1,11 @@
 - name: Load application credentials for the deployment
-  hosts: web
+  hosts: app
   connection: local
   tasks:
     - include_vars: "{{ inventory_dir }}/vars/web.yml"
 
 - name: Install and deploy apps
-  hosts: web
+  hosts: app
   roles:
     - php
     - wordpress

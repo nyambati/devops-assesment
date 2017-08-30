@@ -29,10 +29,10 @@ resource "aws_security_group" "app" {
   description = "Allow  inbound traffic from lp"
 
   ingress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = ["${aws_security_group.lb.id}"]
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["${ aws_instance.lb.public_ip }/32"]
   }
 
   ingress {
@@ -58,7 +58,7 @@ resource "aws_security_group" "database" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["${formatlist("%s/32", aws_instance.slaves.*.public_ip)}", "${aws_instance.master.public_ip}/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {

@@ -61,5 +61,4 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--memory", 512]
     end
   end
-
 end
